@@ -45,6 +45,14 @@ public class MyInvitations extends HttpServlet {
 		
 		Session sref = sfref.openSession();
 		
+		Query<?> qref1=sref.createQuery("from InvitePojo where teacherEmail=:em");
+		qref1.setParameter("em", email);
+		
+		List<?> lref1 = qref1.list();
+		Iterator<?> itr1 = lref1.iterator();
+		
+		if(itr1.hasNext()) {
+		
 		Query<?> qref=sref.createQuery("from InvitePojo where teacherEmail=:em");
 		qref.setParameter("em", email);
 		
@@ -54,17 +62,16 @@ public class MyInvitations extends HttpServlet {
 		out.print("<table border='1' cellpadding='4' width='100%'>");
 		out.print("<body style ='background-color:AliceBlue;'/>");
 		out.print("<tr><td>Whose is Invited you</td></tr>");
-        out.print("</table>");
 		
 		while(itr.hasNext()) {
 			
 			InvitePojo ip = (InvitePojo)itr.next();
 			
-			out.print("<table border='1' cellpadding='4' width='100%'>");
-			out.print("<body style ='background-color:AliceBlue;'/>");
-			out.print("<tr><td>"+ip.getAdminEmail()+"</td><td><a href='Accept?adminEmail="+ip.getAdminEmail()+"'>Accept</td><td><a href='Decline?adminEmail="+ip.getAdminEmail()+"'>Decline</td></tr>");
-	        out.print("</table>");
-			
+			out.print("<tr><td>"+ip.getAdminEmail()+"</td><td><a href='Accept?adminEmail="+ip.getAdminEmail()+"'>Accept</td><td><a href='Decline?adminEmail="+ip.getAdminEmail()+"'>Decline</td></tr>");	
+		}
+		}else {
+			out.print("<html><body><body style =\"background-color:AliceBlue;\"/><center><br><br><br><br><h1>You Don't have any Invitations to show</h1></center></body></html>");
+
 		}
 		
 	}

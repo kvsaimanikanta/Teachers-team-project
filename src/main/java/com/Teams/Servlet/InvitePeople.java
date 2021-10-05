@@ -62,16 +62,12 @@ public class InvitePeople extends HttpServlet {
 			out.print("<table border='1' cellpadding='4' width='100%'>");
 			out.print("<body style ='background-color:AliceBlue;'/>");
 			out.print("<tr><td>Name</td><td>Email</td><td>Subject</td></tr>");
-	        out.print("</table>");
 			
 			while(itr1.hasNext()) {
 				
 				SignUpPojo sp = (SignUpPojo)itr1.next();
 				
-				out.print("<table border='1' cellpadding='4' width='100%'>");
-				out.print("<body style ='background-color:AliceBlue;'/>");
 				out.print("<tr><td>"+sp.getName()+"</td><td>"+sp.getEmail()+"</td><td>"+sp.getSubject()+"</td><td><a href='Invite?email="+sp.getEmail()+"'>Invite</td></tr>");
-		        out.print("</table>");
 				
 			}
 			

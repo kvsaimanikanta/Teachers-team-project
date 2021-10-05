@@ -49,7 +49,6 @@ public class ShowTeams extends HttpServlet {
 		out.print("<table border='1' cellpadding='4' width='100%'>");
 		out.print("<body style ='background-color:AliceBlue;'/>");
 		out.print("<tr><td>TeamName</td><td>Team Admin</td><td>Join Link</td></tr>");
-        out.print("</table>");
 		
         String adminEmail=null;
         int id=0;
@@ -57,9 +56,7 @@ public class ShowTeams extends HttpServlet {
 			
 			TeamPojo tp = (TeamPojo)itr.next();
 			
-			out.print("<table border='1' cellpadding='4' width='100%'>");
 			out.print("<tr><td>"+tp.getTeamName()+"</td><td>"+tp.getEmail()+"</td><td><a href='Join?adminEmail="+tp.getEmail()+"'>Join</a></td></tr>");
-	        out.print("</table>");
 
 //	        adminEmail=tp.getEmail();
 //	        id=tp.getId();

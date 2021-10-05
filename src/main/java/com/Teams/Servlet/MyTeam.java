@@ -56,15 +56,12 @@ public class MyTeam extends HttpServlet {
 		out.print("<table border='1' cellpadding='4' width='100%'>");
 		out.print("<body style ='background-color:AliceBlue;'/>");
 		out.print("<tr><td>teamMateEmail</td><td>teamMateName</td><td>teamMateNumber</td><td>teamMateSubject</td></tr>");
-        out.print("</table>");
 		
 		while(itr.hasNext()) {
 			
 			TeamsPojo tp = (TeamsPojo)itr.next();
-			out.print("<table border='1' cellpadding='4' width='100%'>");
-			out.print("<body style ='background-color:AliceBlue;'/>");
+			
 			out.print("<tr><td>"+tp.getTeamMateEmail()+"</td><td>"+tp.getTeamMateName()+"</td><td>"+tp.getTeamMateNumber()+"</td><td>"+tp.getTeamMateSubject()+"</td><td><a href='Remove?teamMeatEmail="+tp.getTeamMateEmail()+"'>Remove</td></tr>");
-	        out.print("</table>");
 			
 		}
 		}else {
