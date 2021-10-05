@@ -35,6 +35,8 @@
      <mapping class="com.Teams.Pojo.TeamPojo"></mapping> 
  
  	 <mapping class="com.Teams.Pojo.TeamsPojo"></mapping> 
+ 	 
+ 	 <mapping class="com.Teams.Pojo.InvitePojo"></mapping>
  	
    </session-factory>
 </hibernate-configuration>
