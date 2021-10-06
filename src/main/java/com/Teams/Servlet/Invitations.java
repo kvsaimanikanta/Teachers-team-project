@@ -17,13 +17,14 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 
+import com.Teams.Pojo.InvitePojo;
 import com.Teams.Pojo.TeamsPojo;
 
 /**
- * Servlet implementation class IamIn
+ * Servlet implementation class Invitations
  */
-@WebServlet("/IamIn")
-public class IamIn extends HttpServlet {
+@WebServlet("/Invitations")
+public class Invitations extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -38,8 +39,6 @@ public class IamIn extends HttpServlet {
 		ServletContext sc = getServletContext();
 		String email = (String) sc.getAttribute("t-email");
 		
-		System.out.println(email);
-		
 		Configuration cref = new Configuration();
 		cref.configure("team.cfg.xml");
 		
@@ -47,33 +46,38 @@ public class IamIn extends HttpServlet {
 		
 		Session sref = sfref.openSession();
 		
-		Query<?> qref1=sref.createQuery("from TeamsPojo where teamMateEmail=:em");
-		qref1.setParameter("em", email);
-		
-		List<?> lref1 = qref1.list();
-		Iterator<?> itr1 = lref1.iterator();
-		
-		if(itr1.hasNext()) {
-		
-		Query<?> qref=sref.createQuery("from TeamsPojo where teamMateEmail=:em");
+		Query<?> qref=sref.createQuery("from TeamsPojo where teamAdminEmail=:em");
 		qref.setParameter("em", email);
 		
 		List<?> lref = qref.list();
 		Iterator<?> itr = lref.iterator();
 		
-		out.print("<table border='1' cellpadding='4' width='100%'>");
-		out.print("<body style ='background-color:AliceBlue;'/>");
-		out.print("<tr><td>teamAdminEmailEmail</td></tr>");
-		
-		while(itr.hasNext()) {
+		if(itr.hasNext()) {
 			
-			TeamsPojo tp = (TeamsPojo)itr.next();
-			out.print("<tr><td>"+tp.getTeamAdminEmail()+"</td><td><a href='Left?adminMail="+tp.getTeamAdminEmail()+"'>Left</td><td><a href='Team?adminEmail="+tp.getTeamAdminEmail()+"'>Team</td></tr>");
+			Query<?> qref1=sref.createQuery("from InvitePojo where adminEmail=:em");
+			qref1.setParameter("em", email);
 			
-		}
-		}else
-		{
-			out.print("<html><body><body style =\"background-color:AliceBlue;\"/><center><br><br><br><br><h1>You are not in any Team</h1></center></body></html>");
+			List<?> lref1 = qref1.list();
+			Iterator<?> itr1 = lref1.iterator();
+			
+			if(itr1.hasNext()) {
+				out.print("<table border='1' cellpadding='4' width='100%'>");
+				out.print("<body style ='background-color:AliceBlue;'/>");
+				
+				while(itr1.hasNext()) {
+					
+					InvitePojo tp = (InvitePojo)itr.next();
+					
+					out.print("<tr><td>"+tp.getTeacherEmail()+"</td></tr>");
+					
+				}
+			}else {
+				out.print("<html><body><body style =\"background-color:AliceBlue;\"/><center><br><br><br><br><h1>You don't have any Pending Invitations show</h1><h2>If you want to Invite click on below link</h2><a href='InvitePeople'>InvitePeople</center></body></html>");
+
+			}
+			
+		}else {
+			out.print("<html><body><body style =\"background-color:AliceBlue;\"/><center><br><br><br><br><h1>You don't have any teams if you want to create click on below link</h1><a href='createTeam.html'>Create Team</center></body></html>");
 
 		}
 		

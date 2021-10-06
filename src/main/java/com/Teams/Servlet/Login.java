@@ -43,7 +43,7 @@ public class Login extends HttpServlet {
 			rd.include(req, res);
 			
 		}else {
-			out.print("<html><body><body style =\"background-color:AliceBlue;\"/><center><br><br><br><br><h1>LogIn Failed</h1><h2>Check With The Email And Password<h2><h3>Or Create an Account By Clicking Below Link<h3><a href='SignUp.html'/>SignUp<br><br><a href='userLogin.html'/>LogIn</center></body></html>");
+			out.print("<html><body><body style =\"background-color:AliceBlue;\"/><center><br><br><br><br><h1>LogIn Failed</h1><h2>Check With The Email And Password<h2><h3>Or Create an Account By Clicking Below Link<h3><a href='SignUp.html'/>SignUp<br><br><a href='Login.html'/>LogIn</center></body></html>");
 		}
 		
 	}
